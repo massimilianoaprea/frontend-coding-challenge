@@ -61,6 +61,27 @@ const theme = {
       'font-size': '14px',
       'text-transform': 'uppercase'
     }
+  },
+  breakpoints: {
+    xs: {
+      viewport: 375
+    },
+    sm: {
+      container: 540,
+      viewport: 576
+    },
+    md: {
+      container: 720,
+      viewport: 768
+    },
+    lg: {
+      container: 960,
+      viewport: 1024
+    },
+    xl: {
+      container: 1140,
+      viewport: 1200
+    }
   }
 };
 
