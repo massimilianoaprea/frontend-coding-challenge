@@ -4,12 +4,47 @@ import { Provider } from 'react-redux';
 import GlobalStyle from './GlobalStyle';
 import store from './store';
 import Container from './components/Container';
-import H4 from './components/H4';
+import { Header } from './components/Header';
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import { TRANSLATIONS } from './i18/languages';
+import { DEFAULT_LANGUAGE } from './constants/general';
+import moment from 'moment-timezone';
+
+i18n.use(initReactI18next).init({
+  resources: {
+    en: {
+      translation: TRANSLATIONS.en
+    },
+    it: {
+      translation: TRANSLATIONS.it
+    }
+  },
+  lng: DEFAULT_LANGUAGE,
+  fallbackLng: ['it', 'en'],
+
+  interpolation: {
+    escapeValue: false,
+    format: function(
+      value: any,
+      format: string | undefined,
+      lng: string | undefined
+    ) {
+      if (value instanceof Date)
+        return moment(value)
+          .tz('Europe/London')
+          .format(format);
+      if (typeof value === 'number')
+        return new Intl.NumberFormat().format(value);
+      return value;
+    }
+  }
+});
 
 const App: React.FC = () => {
   return (
     <Container>
-      <H4>FACEIT Tournaments</H4>
+      <Header />
     </Container>
   );
 };
