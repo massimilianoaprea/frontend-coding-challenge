@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllTournaments } from '../../actionCreators/tournaments';
+import {
+  editTournamentName,
+  getAllTournaments
+} from '../../actionCreators/tournaments';
 import { RootState } from '../../reducers';
 import styled from 'styled-components';
 import theme from '../../theme';
@@ -101,6 +104,19 @@ export const TournamentsList: React.FC = () => {
     );
   };
 
+  const edit = (id: string, name: string) => {
+    const newName = prompt(`${t('newTournamentName')}:`, name);
+
+    if (!newName) return;
+
+    if (newName === '') {
+      alert(t('noNameError'));
+      return;
+    } else {
+      dispatch(editTournamentName(id, newName));
+    }
+  };
+
   return (
     <div>
       {tournamentsList.length > 0 ? (
@@ -126,7 +142,7 @@ export const TournamentsList: React.FC = () => {
                 value={t('dateFormat', { date: new Date(startDate) })}
               />
               <div>
-                <Button onClick={() => {}}>{t('edit')}</Button>
+                <Button onClick={() => edit(id, name)}>{t('edit')}</Button>
                 <Button onClick={() => {}}>{t('delete')}</Button>
               </div>
             </Tournament>
