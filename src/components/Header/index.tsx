@@ -5,9 +5,11 @@ import i18n, { changeLanguage } from 'i18next';
 import { Language } from './Language';
 import { useDispatch } from 'react-redux';
 import changeSelectedLanguage from '../../actionCreators/general';
+import { useTranslation } from 'react-i18next';
 
 export const Header: React.FC = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const switchLanguage = (language: string) => {
     changeLanguage(language)
@@ -17,7 +19,7 @@ export const Header: React.FC = () => {
 
   return (
     <Row>
-      <H4>FACEIT Tournaments</H4>
+      <H4>{t('title')}</H4>
       <div>
         <Language onClick={switchLanguage} language="it">
           ITA

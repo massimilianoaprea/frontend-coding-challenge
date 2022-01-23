@@ -19,9 +19,59 @@ const Tournament = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  @media (max-width: ${theme.breakpoints.sm.viewport}px) {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  @media (min-width: ${theme.breakpoints.sm.viewport}px) and (max-width: ${theme
+      .breakpoints.md.viewport}px) {
+    width: calc(calc(100% - ${theme.spacing(3)} * 2) / 2);
+
+    &:nth-child(2n + 1) {
+      margin-left: 0;
+    }
+
+    &:nth-child(2n) {
+      margin-right: 0;
+    }
+  }
+
+  @media (min-width: ${theme.breakpoints.md.viewport}px) and (max-width: ${theme
+      .breakpoints.lg.viewport}px) {
+    width: calc(calc(100% - ${theme.spacing(3)} * 2) / 2);
+
+    &:nth-child(2n + 1) {
+      margin-left: 0;
+    }
+
+    &:nth-child(2n) {
+      margin-right: 0;
+    }
+  }
+
+  @media (min-width: ${theme.breakpoints.lg.viewport}px) {
+    width: calc(calc(100% - ${theme.spacing(3)} * 4) / 3);
+    height: 195px;
+
+    &:nth-child(3n + 1) {
+      margin-left: 0;
+    }
+
+    &:nth-child(3n) {
+      margin-right: 0;
+    }
+  }
 `;
 
-const TournamentDataLine: React.FC<{ field: string; value: string }> = ({
+interface TournamentDataLineI {
+  field: string;
+  value: string;
+}
+
+const TournamentDataLine: React.FC<TournamentDataLineI> = ({
   field,
   value
 }) => (

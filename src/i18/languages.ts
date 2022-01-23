@@ -1,5 +1,6 @@
 export const TRANSLATIONS = {
   en: {
+    title: 'FACEIT Tournaments',
     dateFormat: '{{date, DD/MM/YYYY, HH:mm:ss}}',
     tournament: {
       search: 'Search tournament...',
@@ -22,6 +23,7 @@ export const TRANSLATIONS = {
     areYouSure: 'Do you really want to delete this tournament?'
   },
   it: {
+    title: 'Tornei FACEIT',
     dateFormat: '{{date, DD/MM/YYYY, HH:mm:ss}}',
     tournament: {
       search: 'Ricerca torneo...',
