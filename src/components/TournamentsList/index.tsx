@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  deleteTournament,
   editTournamentName,
   getAllTournaments
 } from '../../actionCreators/tournaments';
@@ -117,6 +118,11 @@ export const TournamentsList: React.FC = () => {
     }
   };
 
+  const deleteATournament = (id: string) => {
+    const res = window.confirm(t('areYouSure'));
+    if (res) dispatch(deleteTournament(id));
+  };
+
   return (
     <div>
       {tournamentsList.length > 0 ? (
@@ -143,7 +149,9 @@ export const TournamentsList: React.FC = () => {
               />
               <div>
                 <Button onClick={() => edit(id, name)}>{t('edit')}</Button>
-                <Button onClick={() => {}}>{t('delete')}</Button>
+                <Button onClick={() => deleteATournament(id)}>
+                  {t('delete')}
+                </Button>
               </div>
             </Tournament>
           )
