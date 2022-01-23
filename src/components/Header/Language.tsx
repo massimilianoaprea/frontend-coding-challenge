@@ -7,8 +7,7 @@ const LanguageToSelect = styled.span<{
   language: string;
   currentLanguage: string;
 }>`
-  margin: 0 3px;
-  font-size: 0.9rem;
+  margin: 0 5px;
   color: ${({ language, currentLanguage }) =>
     language === currentLanguage ? 'white' : 'gray'};
   cursor: pointer;

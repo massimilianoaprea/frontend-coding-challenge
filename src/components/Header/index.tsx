@@ -6,6 +6,11 @@ import { Language } from './Language';
 import { useDispatch } from 'react-redux';
 import changeSelectedLanguage from '../../actionCreators/general';
 import { useTranslation } from 'react-i18next';
+import styled from 'styled-components';
+
+const LanguageRow = styled(Row)`
+  font-size: 1.2rem;
+`;
 
 export const Header: React.FC = () => {
   const dispatch = useDispatch();
@@ -22,7 +27,7 @@ export const Header: React.FC = () => {
   return (
     <Row>
       <H4>{t('title')}</H4>
-      <div>
+      <LanguageRow>
         <Language onClick={switchLanguage} language="it">
           ITA
         </Language>
@@ -30,7 +35,7 @@ export const Header: React.FC = () => {
         <Language onClick={switchLanguage} language="en">
           EN
         </Language>
-      </div>
+      </LanguageRow>
     </Row>
   );
 };
