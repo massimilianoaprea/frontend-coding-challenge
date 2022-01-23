@@ -10,6 +10,7 @@ import { initReactI18next } from 'react-i18next';
 import { TRANSLATIONS } from './i18/languages';
 import { DEFAULT_LANGUAGE } from './constants/general';
 import moment from 'moment-timezone';
+import { TournamentsList } from './components/TournamentsList';
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -45,6 +46,7 @@ const App: React.FC = () => {
   return (
     <Container>
       <Header />
+      <TournamentsList />
     </Container>
   );
 };
