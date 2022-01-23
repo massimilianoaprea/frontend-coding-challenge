@@ -43,7 +43,9 @@ export const Toolbar: React.FC = () => {
 
   const newTournament = () => {
     const name = prompt(`${t('newTournamentName')}:`);
+
     if (!name) return;
+
     if (name === '') {
       alert(t('noNameError'));
       return;

@@ -9,7 +9,3 @@ export interface TournamentI {
   };
   startDate: string;
 }
-
-export interface FabInterface {
-  show: boolean;
-}

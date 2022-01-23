@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import GlobalStyle from './GlobalStyle';
@@ -12,6 +12,10 @@ import { DEFAULT_LANGUAGE } from './constants/general';
 import moment from 'moment-timezone';
 import { TournamentsList } from './components/TournamentsList';
 import { Toolbar } from './components/Toolbar';
+import styled from 'styled-components';
+import theme from './theme';
+import { FabInterface } from './interfaces/general';
+import { scrollTop } from './utils';
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -43,12 +47,66 @@ i18n.use(initReactI18next).init({
   }
 });
 
+const Fab = styled.div<FabInterface>`
+  position: fixed;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background-color: ${theme.palette.secondary.main};
+  color: white;
+  bottom: 45px;
+  right: 45px;
+  z-index: -1;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 26px;
+  align-items: flex-start;
+  opacity: 0;
+  transition: 0.2s;
+
+  ${({ show }) =>
+    show &&
+    `
+    bottom: 30px;
+    right: 30px;
+    width: 40px;
+    height: 40px;
+    opacity: 1;
+    z-index: 300000;
+  `}
+  &:hover {
+    background-color: ${theme.palette.secondary.light};
+  }
+
+  &:active {
+    background-color: ${theme.palette.secondary.dark};
+  }
+`;
+
 const App: React.FC = () => {
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    const scroll = () => {
+      setShow(document.documentElement.scrollTop > 250);
+    };
+
+    window.addEventListener('scroll', scroll);
+
+    return () => {
+      window.removeEventListener('scroll', scroll);
+    };
+  }, []);
+
   return (
     <Container>
       <Header />
       <Toolbar />
       <TournamentsList />
+      <Fab show={show} onClick={() => scrollTop()}>
+        &uarr;
+      </Fab>
     </Container>
   );
 };
