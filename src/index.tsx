@@ -11,6 +11,7 @@ import { TRANSLATIONS } from './i18/languages';
 import { DEFAULT_LANGUAGE } from './constants/general';
 import moment from 'moment-timezone';
 import { TournamentsList } from './components/TournamentsList';
+import { Toolbar } from './components/Toolbar';
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -46,6 +47,7 @@ const App: React.FC = () => {
   return (
     <Container>
       <Header />
+      <Toolbar />
       <TournamentsList />
     </Container>
   );
