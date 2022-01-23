@@ -22,6 +22,11 @@ const RowChild = styled(Row)`
 
   @media (max-width: ${theme.breakpoints.xs.viewport}px) {
     flex-direction: column;
+
+    input,
+    button {
+      width: 100%;
+    }
   }
 `;
 

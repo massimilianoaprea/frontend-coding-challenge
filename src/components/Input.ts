@@ -6,6 +6,7 @@ const Input = styled.input`
   padding: ${theme.spacing(2)};
   border: none;
   color: ${theme.palette.text.primary};
+  box-sizing: border-box;
 `;
 
 export default Input;
