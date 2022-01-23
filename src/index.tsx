@@ -31,11 +31,7 @@ i18n.use(initReactI18next).init({
 
   interpolation: {
     escapeValue: false,
-    format: function(
-      value: any,
-      format: string | undefined,
-      lng: string | undefined
-    ) {
+    format: function(value: any, format: string | undefined) {
       if (value instanceof Date)
         return moment(value)
           .tz('Europe/London')

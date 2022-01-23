@@ -12,6 +12,8 @@ export const Header: React.FC = () => {
   const { t } = useTranslation();
 
   const switchLanguage = (language: string) => {
+    sessionStorage.setItem('lan', language);
+
     changeLanguage(language)
       .then(() => dispatch(changeSelectedLanguage()))
       .catch((err: unknown) => console.log(err, i18n.language));
