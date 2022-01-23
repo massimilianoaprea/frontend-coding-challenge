@@ -8,6 +8,7 @@ import { TournamentI } from '../../interfaces/tournament';
 import H6 from '../H6';
 import Button from '../Button';
 import { useTranslation } from 'react-i18next';
+import Row from '../Row';
 
 const Tournament = styled.div`
   background-color: ${theme.palette.background.base};
@@ -92,35 +93,49 @@ export const TournamentsList: React.FC = () => {
     dispatch(getAllTournaments());
   }, [dispatch]);
 
+  const getMessage = () => {
+    return t(
+      `tournament.${
+        isLoading ? 'loading' : errorOnLoading ? 'error' : 'notFound'
+      }`
+    );
+  };
+
   return (
     <div>
-      {tournamentsList.map(
-        ({
-          id,
-          name,
-          game,
-          organizer,
-          participants: { max, current },
-          startDate
-        }: TournamentI) => (
-          <Tournament key={id} className="tournament">
-            <H6>{name}</H6>
-            <TournamentDataLine field={t('organizer')} value={organizer} />
-            <TournamentDataLine field={t('game')} value={game} />
-            <TournamentDataLine
-              field={t('participants')}
-              value={`${current}/${max}`}
-            />
-            <TournamentDataLine
-              field={t('start')}
-              value={t('dateFormat', { date: new Date(startDate) })}
-            />
-            <div>
-              <Button onClick={() => {}}>{t('edit')}</Button>
-              <Button onClick={() => {}}>{t('delete')}</Button>
-            </div>
-          </Tournament>
+      {tournamentsList.length > 0 ? (
+        tournamentsList.map(
+          ({
+            id,
+            name,
+            game,
+            organizer,
+            participants: { max, current },
+            startDate
+          }: TournamentI) => (
+            <Tournament key={id} className="tournament">
+              <H6>{name}</H6>
+              <TournamentDataLine field={t('organizer')} value={organizer} />
+              <TournamentDataLine field={t('game')} value={game} />
+              <TournamentDataLine
+                field={t('participants')}
+                value={`${current}/${max}`}
+              />
+              <TournamentDataLine
+                field={t('start')}
+                value={t('dateFormat', { date: new Date(startDate) })}
+              />
+              <div>
+                <Button onClick={() => {}}>{t('edit')}</Button>
+                <Button onClick={() => {}}>{t('delete')}</Button>
+              </div>
+            </Tournament>
+          )
         )
+      ) : (
+        <Row centered>
+          <p>{getMessage()}</p>
+        </Row>
       )}
     </div>
   );
